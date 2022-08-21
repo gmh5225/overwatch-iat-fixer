@@ -83,7 +83,7 @@ function fix()
     local base = getAddress("Overwatch.exe")
     local NtHeaders = base + readInteger(base + 0x3C)
     local sectionCount = readSmallInteger(NtHeaders + 6)
-    for i = 0, sectionCount do
+    for i = 0, sectionCount - 1 do
         local section = NtHeaders + 0x108 + 0x28 * i
         local name = readString(section, 8, false)
         if name == ".rdata" then
