@@ -3,10 +3,10 @@ Blizzard's Overwatch IAT Fixer lua script for Cheat Engine
 ## Features
 
 ### before
- <img src="https://raw.githubusercontent.com/vmmcall/overwatch-iat-fixer/main/images/before.png">
+ <img src="https://raw.githubusercontent.com/vmmcall/overwatch-iat-fixer/main/images/before.PNG">
 
 ### after
- <img src="https://raw.githubusercontent.com/vmmcall/overwatch-iat-fixer/main/images/after.png">
+ <img src="https://raw.githubusercontent.com/vmmcall/overwatch-iat-fixer/main/images/after.PNG">
 
 
 ## Result
