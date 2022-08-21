@@ -51,11 +51,23 @@ function follow(addr)
             elseif isR64(route[1]) and not isR64(route[2]) then
                 r64[route[1]] = r64[route[1]] + tonumber(route[2], 16)
             end
+        elseif mnemonic[1] == "sub" then
+            if isR64(route[1]) and isR64(route[2]) then
+                r64[route[1]] = r64[route[1]] - r64[route[2]]
+            elseif isR64(route[1]) and not isR64(route[2]) then
+                r64[route[1]] = r64[route[1]] - tonumber(route[2], 16)
+            end
         elseif mnemonic[1] == "or" then
             if isR64(route[1]) and isR64(route[2]) then
                 r64[route[1]] = bOr(r64[route[1]], r64[route[2]])
             elseif isR64(route[1]) and not isR64(route[2]) then
                 r64[route[1]] = bOr(r64[route[1]], tonumber(route[2], 16))
+            end
+        elseif mnemonic[1] == "imul" then
+            if isR64(route[1]) and isR64(route[2]) then
+                r64[route[1]] = r64[route[1]] * r64[route[2]]
+            elseif isR64(route[1]) and not isR64(route[2]) then
+                r64[route[1]] = r64[route[1]] * tonumber(route[2], 16)
             end
         elseif mnemonic[1] == "jmp" then
             if isR64(mnemonic[2]) then
@@ -84,7 +96,9 @@ function fix()
                     local scriptStr = [[%x:
                             jmp %x
                         ]]
-                    autoAssemble(string.format(scriptStr, addr, dest))
+                    if inModule(dest) then 
+                        autoAssemble(string.format(scriptStr, addr, dest))
+                    end
                     print(string.format("%x - %s", addr, getNameFromAddress(dest)))
                 end
                 iat = iat + 8
